@@ -12,7 +12,8 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      smurfs: []
+      smurfs: [],
+      activeFriend: ""
     };
   }
 
@@ -32,16 +33,33 @@ class App extends Component {
 
   setEditForm = (e, smurf) => {
     e.preventDefault();
+    // console.log(smurf.id);
     this.setState({
       activeSmurf: smurf
     });
-    this.props.hisotry.push(`/edtismurf/${smurf.id}`);
+    this.props.history.push(`/editsmurf/${smurf.id}`);
   };
 
   editSmurf = (e, editedSmurf) => {
     e.preventDefault();
     axios
-      .put(`http://localhost:5000/friends/${editedSmurf.id}`, editedSmurf)
+      .put(`http://localhost:3333/smurfs/${editedSmurf.id}`, editedSmurf)
+      .then(res => {
+        this.setState({
+          activeSmurf: "",
+          smurfs: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
+  deleteSmurf = (e, deletedSmurf) => {
+    e.preventDefault();
+    axios
+      .delete(`http://localhost:3333/smurfs/${deletedSmurf.id}`, deletedSmurf)
       .then(res => {
         this.setState({
           activeSmurf: "",
@@ -66,13 +84,21 @@ class App extends Component {
   }
 
   render() {
+    // console.log(this.state.smurfs);
     return (
       <div className="App">
         <Navigation />
         <Route
           exact
           path="/"
-          render={props => <Smurfs {...props} smurfs={this.state.smurfs} />}
+          render={props => (
+            <Smurfs
+              {...props}
+              smurfs={this.state.smurfs}
+              setEditForm={this.setEditForm}
+              deleteSmurf={this.deleteSmurf}
+            />
+          )}
         />
         <Route
           exact

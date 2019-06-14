@@ -10,13 +10,22 @@ class Smurfs extends Component {
         <ul>
           {this.props.smurfs.map(smurf => {
             return (
-              <Smurf
-                name={smurf.name}
-                id={smurf.id}
-                age={smurf.age}
-                height={smurf.height}
-                key={smurf.id}
-              />
+              <div key={smurf.id} className="smurf-list">
+                <Smurf
+                  name={smurf.name}
+                  id={smurf.id}
+                  age={smurf.age}
+                  height={smurf.height}
+                />
+                <div className="card-edit-links">
+                  <button onClick={e => this.props.setEditForm(e, smurf)}>
+                    Edit
+                  </button>
+                  <button onClick={e => this.props.deleteSmurf(e, smurf)}>
+                    Delete
+                  </button>
+                </div>
+              </div>
             );
           })}
         </ul>
