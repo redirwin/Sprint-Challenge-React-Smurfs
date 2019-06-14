@@ -91,7 +91,7 @@ class App extends Component {
           render={props => (
             <SmurfEdit
               {...props}
-              // smurfs={this.state.smurfs}
+              activeSmurf={this.state.activeSmurf}
               editSmurf={this.editSmurf}
             />
           )}
