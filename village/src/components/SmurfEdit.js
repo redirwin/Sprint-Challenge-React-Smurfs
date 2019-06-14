@@ -28,12 +28,9 @@ class SmurfEdit extends Component {
   };
 
   render() {
-    // console.log(this.state.activeSmurf);
-    console.log("hello");
-    console.log(this.props.activeSmurf);
     return (
-      <div className="SmurfForm">
-        <form onSubmit={this.addSmurf}>
+      <div className="edit-smurf-container">
+        <form onSubmit={this.handleEditSubmit}>
           <input
             onChange={this.handleEditChange}
             placeholder="name"
