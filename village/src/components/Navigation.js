@@ -6,7 +6,7 @@ class Navigation extends React.Component {
     return (
       <div className="nav-links-container">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/smurfadd">Add a Smurf</NavLink>
+        <NavLink to="/addsmurf">Add a Smurf</NavLink>
       </div>
     );
   }
