@@ -30,6 +30,30 @@ class App extends Component {
       });
   };
 
+  setEditForm = (e, smurf) => {
+    e.preventDefault();
+    this.setState({
+      activeSmurf: smurf
+    });
+    this.props.hisotry.push(`/edtismurf/${smurf.id}`);
+  };
+
+  editSmurf = (e, editedSmurf) => {
+    e.preventDefault();
+    axios
+      .put(`http://localhost:5000/friends/${editedSmurf.id}`, editedSmurf)
+      .then(res => {
+        this.setState({
+          activeFriend: "",
+          friends: res.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+
   componentDidMount() {
     axios
       .get("http://localhost:3333/smurfs")
@@ -56,7 +80,7 @@ class App extends Component {
           render={props => (
             <SmurfAdd
               {...props}
-              smurfs={this.state.smurfs}
+              // smurfs={this.state.smurfs}
               addSmurf={this.addSmurf}
             />
           )}
@@ -64,7 +88,13 @@ class App extends Component {
         <Route
           exact
           path="/editsmurf/:id"
-          render={props => <SmurfEdit {...props} smurfs={this.state.smurfs} />}
+          render={props => (
+            <SmurfEdit
+              {...props}
+              // smurfs={this.state.smurfs}
+              editSmurf={this.editSmurf}
+            />
+          )}
         />
       </div>
     );

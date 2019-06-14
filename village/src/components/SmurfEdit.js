@@ -4,25 +4,22 @@ class SmurfEdit extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      activeSmurf: "",
       name: "",
       age: "",
       height: ""
     };
   }
 
-  addSmurf = event => {
-    event.preventDefault();
-    // add code to create the smurf using the api
-
-    this.setState({
-      name: "",
-      age: "",
-      height: ""
-    });
-  };
-
-  handleInputChange = e => {
-    this.setState({ [e.target.name]: e.target.value });
+  handleEditChange = e => {
+    e.preventDefault();
+    e.persist();
+    this.setState(prevState => ({
+      activeFriend: {
+        ...prevState.activeFriend,
+        [e.target.name]: e.target.value
+      }
+    }));
   };
 
   render() {
