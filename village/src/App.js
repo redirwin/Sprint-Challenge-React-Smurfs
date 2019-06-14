@@ -6,6 +6,7 @@ import "./App.css";
 import SmurfAdd from "./components/SmurfAdd";
 import SmurfEdit from "./components/SmurfEdit";
 import Smurfs from "./components/Smurfs";
+import Navigation from "./components/Navigation";
 
 class App extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class App extends Component {
 
     return (
       <div className="App">
+        <Navigation />
         <Route
           exact
           path="/"
