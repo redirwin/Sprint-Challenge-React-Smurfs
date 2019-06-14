@@ -49,7 +49,7 @@ class SmurfEdit extends Component {
             value={this.state.activeSmurf.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+          <button type="submit">Save Changes</button>
         </form>
       </div>
     );
