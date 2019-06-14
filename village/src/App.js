@@ -21,7 +21,7 @@ class App extends Component {
       .post("http://localhost:3333/smurfs", newSmurf)
       .then(response => {
         this.setState({
-          friends: response.data
+          smurfs: response.data
         });
         this.props.history.push("/");
       })
@@ -44,8 +44,8 @@ class App extends Component {
       .put(`http://localhost:5000/friends/${editedSmurf.id}`, editedSmurf)
       .then(res => {
         this.setState({
-          activeFriend: "",
-          friends: res.data
+          activeSmurf: "",
+          smurfs: res.data
         });
         this.props.history.push("/");
       })
@@ -77,13 +77,7 @@ class App extends Component {
         <Route
           exact
           path="/addsmurf"
-          render={props => (
-            <SmurfAdd
-              {...props}
-              // smurfs={this.state.smurfs}
-              addSmurf={this.addSmurf}
-            />
-          )}
+          render={props => <SmurfAdd {...props} addSmurf={this.addSmurf} />}
         />
         <Route
           exact
