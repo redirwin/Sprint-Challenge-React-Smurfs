@@ -1,4 +1,24 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const SmurfAddContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+  padding: 5%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input,
+    button {
+      padding: 1%;
+      margin: 1%;
+    }
+  }
+`;
 
 class SmurfAdd extends Component {
   constructor(props) {
@@ -29,7 +49,7 @@ class SmurfAdd extends Component {
 
   render() {
     return (
-      <div className="SmurfForm">
+      <SmurfAddContainer>
         <form onSubmit={this.handleAddSubmit}>
           <input
             onChange={this.handleAddChange}
@@ -39,19 +59,19 @@ class SmurfAdd extends Component {
           />
           <input
             onChange={this.handleAddChange}
-            placeholder="age"
+            placeholder="age in smurf years"
             value={this.state.age}
             name="age"
           />
           <input
             onChange={this.handleAddChange}
-            placeholder="height"
+            placeholder="height in centimeters"
             value={this.state.height}
             name="height"
           />
-          <button type="submit">Add to the village</button>
+          <button type="submit">Add smurf to village</button>
         </form>
-      </div>
+      </SmurfAddContainer>
     );
   }
 }

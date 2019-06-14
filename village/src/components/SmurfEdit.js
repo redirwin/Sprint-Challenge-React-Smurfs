@@ -1,4 +1,24 @@
 import React, { Component } from "react";
+import styled from "styled-components";
+
+const SmurfContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: 0 auto;
+  padding: 5%;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    input,
+    button {
+      padding: 1%;
+      margin: 1%;
+    }
+  }
+`;
 
 class SmurfEdit extends Component {
   state = {
@@ -29,7 +49,7 @@ class SmurfEdit extends Component {
 
   render() {
     return (
-      <div className="edit-smurf-container">
+      <SmurfContainer>
         <form onSubmit={this.handleEditSubmit}>
           <input
             onChange={this.handleEditChange}
@@ -51,7 +71,7 @@ class SmurfEdit extends Component {
           />
           <button type="submit">Save Changes</button>
         </form>
-      </div>
+      </SmurfContainer>
     );
   }
 }

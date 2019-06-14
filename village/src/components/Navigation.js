@@ -4,16 +4,31 @@ import styled from "styled-components";
 
 const NavWrapper = styled.div`
   with: 100%;
-  padding: 2% 0;
-  background-color: #1e5799; // Old browsers
-  @include filter-gradient(#1e5799, #7db9e8, horizontal); // IE6-9
-  @include background-image(linear-gradient(left, #1e5799 0%, #7db9e8 36%));
+  display: flex;
+  justify-content: center;
+  background-color: #1e5799;
+
+  @media (max-width: 300px) {
+    flex-direction: column;
+  }
 
   a {
     color: white;
     text-decoration: none;
-    padding: 0 2%;
+    padding: 1%;
+    width: 100px;
     font-size: 1.25rem;
+    text-align: center;
+    transition: background-color 0.3s;
+
+    &:hover {
+      background-color: #97ddf5;
+      color: #1e5799;
+    }
+
+    @media (max-width: 300px) {
+      width: 100%;
+    }
   }
 `;
 
@@ -22,7 +37,7 @@ class Navigation extends React.Component {
     return (
       <NavWrapper>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/addsmurf">Add a Smurf</NavLink>
+        <NavLink to="/addsmurf">Add Smurf</NavLink>
       </NavWrapper>
     );
   }
