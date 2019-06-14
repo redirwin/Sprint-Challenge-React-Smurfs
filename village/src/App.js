@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Route } from "react-router-dom";
 import axios from "axios";
 
 import "./App.css";
@@ -13,6 +14,20 @@ class App extends Component {
       smurfs: []
     };
   }
+
+  addSmurf = newSmurf => {
+    axios
+      .post("http://localhost:3333/smurfs", newSmurf)
+      .then(response => {
+        this.setState({
+          friends: response.data
+        });
+        this.props.history.push("/");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   componentDidMount() {
     axios
@@ -33,9 +48,21 @@ class App extends Component {
 
     return (
       <div className="App">
-        <Smurfs smurfs={this.state.smurfs} />
-        <SmurfAdd />
-        <SmurfEdit />
+        <Route
+          exact
+          path="/"
+          render={props => <Smurfs {...props} smurfs={this.state.smurfs} />}
+        />
+        <Route
+          exact
+          path="/smurfadd"
+          render={props => <SmurfAdd {...props} smurfs={this.state.smurfs} />}
+        />
+        <Route
+          exact
+          path="/smurfedit/:id"
+          render={props => <SmurfEdit {...props} smurfs={this.state.smurfs} />}
+        />
       </div>
     );
   }
