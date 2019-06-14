@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route } from "react-router-dom";
 import axios from "axios";
 
-import "./App.css";
+import "./App.scss";
 import SmurfAdd from "./components/SmurfAdd";
 import SmurfEdit from "./components/SmurfEdit";
 import Smurfs from "./components/Smurfs";
