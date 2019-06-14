@@ -3,6 +3,7 @@ import { Route } from "react-router-dom";
 import axios from "axios";
 
 import "./App.scss";
+
 import SmurfAdd from "./components/SmurfAdd";
 import SmurfEdit from "./components/SmurfEdit";
 import Smurfs from "./components/Smurfs";
